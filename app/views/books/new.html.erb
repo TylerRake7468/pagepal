@@ -1,0 +1,21 @@
+<h1>Recommend a Book</h1>
+
+<%= form_with model: @book do |f| %>
+  <div>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+  <%= f.submit "Submit Recommendation" %>
+<% end %>

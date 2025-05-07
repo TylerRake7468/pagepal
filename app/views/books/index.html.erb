@@ -1,0 +1,18 @@
+<h1>Recommended Books</h1>
+
+<% @books.each do |book| %>
+  <div class="p-4 border mb-3">
+    <h2><%= link_to book.title, book_path(book) %></h2>
+    <p><strong>Author:</strong> <%= book.author %></p>
+    <p><%= truncate(book.description, length: 100) %></p>
+    <p><small>Recommended by: <%= book.user.email %></small></p>
+
+    <% if book.image.attached? %>
+      <div>
+        <%= image_tag book.image, alt: book.title, size: "200x300" %> <!-- Display the image -->
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to "Recommend a Book", new_book_path, class: "btn btn-primary" if user_signed_in? %>
