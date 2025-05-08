@@ -9,7 +9,7 @@
     <div class="p-3 border mb-3">
       <h3><%= link_to rec.book.title, book_path(rec.book) %></h3>
       <p><%= rec.review %></p>
-      <p><strong>Vote Received: </strong><%= rec.vote_count %></p>
+      <p><strong>Vote Received: </strong><%= rec.votes_count %></p>
     </div>
   <% end %>
 <% else %>

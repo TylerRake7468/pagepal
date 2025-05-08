@@ -22,7 +22,7 @@
     <p><%= rec.review %></p>
     <p><small>By: <%= rec.user.email %></small></p>
     <p>
-      Votes: <%= rec.vote_count %>
+      Votes: <%= rec.votes_count %>
       <% if user_signed_in? %>
         <% if current_user.votes.exists?(recommendation: rec) %>
           <%= button_to "Remove Vote", recommendation_vote_path(rec), method: :delete %>
