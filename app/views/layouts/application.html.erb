@@ -12,7 +12,10 @@
 
   <body>
     <% if user_signed_in? %>
-      Logged in as <%= current_user.email %> |
+      <%= link_to "Home", root_path %> |
+      <%= link_to "Books", books_path %> |
+      <%= link_to "Add new book", new_book_path %> |
+      
       <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 
     <% else %>

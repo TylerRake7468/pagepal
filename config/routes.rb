@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'users/profile'
+  get 'votes/create'
+  get 'votes/destroy'
   get 'recommendations/create'
 
   devise_for :users
@@ -13,5 +16,11 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :new, :create, :show] do
     resources :recommendations, only: [:new, :create]
   end
+
+  resources :recommendations, only: [] do
+    resource :vote, only: [:create, :destroy]
+  end
+
+  get "/profile", to: "users#profile", as: :profile
 
 end
