@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'recommendations/create'
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -9,6 +10,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
-  resources :books, only: [:index, :new, :create, :show]
+  resources :books, only: [:index, :new, :create, :show] do
+    resources :recommendations, only: [:new, :create]
+  end
 
 end
