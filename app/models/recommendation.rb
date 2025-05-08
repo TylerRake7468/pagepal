@@ -6,8 +6,4 @@ class Recommendation < ApplicationRecord
   validates :user_id, uniqueness: { scope: :book_id, message: "has already recommended this book" }
   has_many :votes, dependent: :destroy
 
-  def vote_count
-    votes.count
-  end
-
 end

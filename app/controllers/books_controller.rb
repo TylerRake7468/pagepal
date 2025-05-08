@@ -2,7 +2,11 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @books = Book.includes(:user).order(created_at: :desc)
+    if params[:sort] == "top"
+      @books = Book.joins(:recommendations).group("books.id").order("SUM(recommendations.votes_count) DESC")
+    else
+      @books = Book.includes(:user).order(created_at: :desc)
+    end
   end
 
   def show

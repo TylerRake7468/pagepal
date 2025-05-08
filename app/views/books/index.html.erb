@@ -1,5 +1,10 @@
 <h1>Recommended Books</h1>
 
+<p>Sort by:
+  <%= link_to "Recent", books_path %> |
+  <%= link_to "Top Voted", books_path(sort: "top") %>
+</p>
+
 <% @books.each do |book| %>
   <div class="p-4 border mb-3">
     <h2><%= link_to book.title, book_path(book) %></h2>
@@ -9,7 +14,7 @@
 
     <% if book.image.attached? %>
       <div>
-        <%= image_tag book.image, alt: book.title, size: "200x300" %> <!-- Display the image -->
+        <%= image_tag book.image, alt: book.title, size: "50x70" %>
       </div>
     <% end %>
   </div>

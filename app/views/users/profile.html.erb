@@ -1,4 +1,17 @@
-<div>
-  <h1 class="font-bold text-4xl">Users#profile</h1>
-  <p>Find me in app/views/users/profile.html.erb</p>
-</div>
+<h1>Your Profile </h1>
+<p><strong>Email:</strong>: <%= current_user.email %></p>
+<p><strong>Total Added books:</strong>: <%= current_user.books.count %></p>
+<p><strong>Total Book Recommendations:</strong>: <%= @recommendations.count %></p>
+
+
+<% if @recommendations.any? %>
+  <% @recommendations.each do |rec| %>
+    <div class="p-3 border mb-3">
+      <h3><%= link_to rec.book.title, book_path(rec.book) %></h3>
+      <p><%= rec.review %></p>
+      <p><strong>Vote Received: </strong><%= rec.vote_count %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>You haven’t recommended any books yet.</p>
+<% end %>
