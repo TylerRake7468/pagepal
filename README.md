@@ -16,19 +16,19 @@ PagePal is a book-sharing web application built with Ruby on Rails. Users can re
 ## Setup Instructions
 Make sure you have **Ruby 3.2+, Rails 7+, PostgreSQL**, and **Node.js** installed.
 1. Clone the repo
-   git clone https://github.com/TylerRake7468/pagepal.git
-   cd pagepal
+   - git clone https://github.com/TylerRake7468/pagepal.git
+   - cd pagepal
    
 2. Install dependencies
-   bundle install
-   yarn install
+   - bundle install
+   - yarn install
 
 3. Setup database
-   bin/rails db:setup
+   - bin/rails db:setup
 
 4. Install TailwindCSS
-   bin/rails tailwindcss:install
+   - bin/rails tailwindcss:install
 
 5. Start the app
-   bin/dev
+   - bin/dev
 
