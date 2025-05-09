@@ -1,0 +1,28 @@
+<h1 class="text-3xl font-bold mb-6">🔥 Trending Books</h1>
+
+<table class="min-w-full bg-white rounded shadow">
+  <thead>
+    <tr class="bg-gray-100 text-left text-sm text-gray-600 uppercase">
+      <th class="p-3">Cover</th>
+      <th class="p-3">Title</th>
+      <th class="p-3">Author</th>
+      <th class="p-3">Votes</th>
+    </tr>
+  </thead>
+  <tbody class="text-gray-700 text-sm divide-y divide-gray-100">
+    <% @books.each do |book| %>
+      <tr class="hover:bg-gray-50">
+        <td class="p-3">
+          <% if book.image.attached? %>
+            <%= image_tag book.image, class: "w-12 h-auto rounded" %>
+          <% end %>
+        </td>
+        <td class="p-3 font-medium text-blue-700">
+          <%= link_to book.title, book_path(book) %>
+        </td>
+        <td class="p-3"><%= book.author %></td>
+        <td class="p-3 font-semibold"><%= book.total_votes.to_i %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
