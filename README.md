@@ -21,7 +21,6 @@ Make sure you have **Ruby 3.2+, Rails 7+, PostgreSQL**, and **Node.js** installe
    
 2. Install dependencies
    - bundle install
-   - yarn install
 
 3. Setup database
    - bin/rails db:setup
@@ -31,4 +30,6 @@ Make sure you have **Ruby 3.2+, Rails 7+, PostgreSQL**, and **Node.js** installe
 
 5. Start the app
    - bin/dev
+
+
 
