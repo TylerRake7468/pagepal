@@ -11,13 +11,13 @@
       <div class="p-4 flex flex-col justify-between flex-1">
         <div>
           <h2 class="text-xl font-semibold text-blue-700 mb-1">
-            <%= link_to book.title, book_path(book) %>
+            <%= link_to truncate(book.title, length: 20), book_path(book) %>
           </h2>
 
           <p class="text-sm text-gray-600 mb-2">By <%= book.author %></p>
 
           <p class="text-gray-700 text-sm mb-4">
-            <%= truncate(book.description, length: 30) %>
+            <%= truncate(book.description, length: 25) %>
           </p>
         </div>
 
