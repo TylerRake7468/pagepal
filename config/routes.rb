@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "books#index"
   resources :books, only: [:index, :new, :create, :show] do
     resources :recommendations, only: [:new, :create]
   end
@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   end
 
   get "/profile", to: "users#profile", as: :profile
+  get "/trending", to: "books#trending", as: :trending_books
+  get "/recommendations", to: "recommendations#index", as: :recommendations
 
 end

@@ -1,0 +1,43 @@
+<h1 class="text-3xl font-bold mb-6 text-blue-700">📢 Recommendations</h1>
+
+<div class="space-y-4">
+  <% @recommendations.each do |rec| %>
+    <div class="flex items-start gap-4 p-4 bg-white border rounded shadow-sm hover:shadow-md transition dark:bg-gray-800">
+      
+      <!-- Book Cover -->
+      <% if rec.book.image.attached? %>
+        <div class="flex-shrink-0">
+          <%= image_tag rec.book.image, class: "w-full h-60 object-contain bg-white" %>
+        </div>
+      <% end %>
+
+      <!-- Details -->
+      <div class="flex-1">
+        <h2 class="text-lg font-semibold text-blue-700">
+          <%= link_to rec.book.title, book_path(rec.book) %>
+        </h2>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Author: <%= rec.book.author %></p>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Recommended by: <%= rec.user.email %></p>
+        <p class="text-gray-700 dark:text-gray-200 mt-1"><%= truncate(rec.review, length: 150) %></p>
+      </div>
+
+      <!-- Voting -->
+      <div class="text-center flex flex-col justify-between items-center">
+        <span class="text-sm mb-2">👍 <%= rec.votes_count %></span>
+
+        <% if user_signed_in? %>
+          <% if current_user.votes.exists?(recommendation: rec) %>
+            <%= button_to "Downvote", recommendation_vote_path(rec),
+                          method: :delete,
+                          class: "text-xs bg-red-100 text-red-600 px-3 py-1 rounded hover:bg-red-200" %>
+          <% else %>
+            <%= button_to "Upvote", recommendation_vote_path(rec),
+                          method: :post,
+                          class: "text-xs bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

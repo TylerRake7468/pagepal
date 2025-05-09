@@ -1,6 +1,10 @@
 class RecommendationsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @recommendations = Recommendation.includes(:user, :book).order(created_at: :desc)
+  end
+
   def new
     @book = Book.find(params[:book_id])
 

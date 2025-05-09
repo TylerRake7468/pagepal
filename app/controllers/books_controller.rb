@@ -26,6 +26,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def trending
+    @books = Book
+            .with_attached_image
+            .left_joins(:recommendations)
+            .select("books.*, COALESCE(SUM(recommendations.votes_count), 0) AS total_votes")
+            .group("books.id")
+            .order("total_votes DESC")
+  end
+
   private
 
   def book_params
