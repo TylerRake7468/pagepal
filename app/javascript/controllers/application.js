@@ -1,5 +1,6 @@
 import { Application } from "@hotwired/stimulus"
 import "@hotwired/turbo-rails"
+import 'flowbite'
 
 
 const application = Application.start()

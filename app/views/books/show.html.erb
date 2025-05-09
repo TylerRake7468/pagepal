@@ -13,12 +13,41 @@
       <p class="text-sm text-gray-600 mb-4"><strong>Uploaded by:</strong> <%= @book.user.email %></p>
       <p class="text-gray-800 text-base leading-relaxed"><%= @book.description %></p>
 
-      <% if user_signed_in? && current_user.recommendations.none? { |r| r.book_id == @book.id } %>
-        <%= link_to "Recommend This Book", new_book_recommendation_path(@book),
-                    class: "mt-6 inline-block bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700" %>
-      <% else %>
-        <p class="mt-6 text-sm italic text-gray-500">You have already recommended this book.</p>
-      <% end %>
+    <% if user_signed_in? && current_user.recommendations.none? { |r| r.book_id == @book.id } %>
+      <button data-modal-target="recommend-modal" data-modal-toggle="recommend-modal"
+              class="mt-6 inline-block bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">
+        Recommend This Book
+      </button>
+
+      <!-- Modal -->
+      <div id="recommend-modal" tabindex="-1" aria-hidden="true"
+           class="hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full p-4 overflow-x-hidden overflow-y-auto inset-0 bg-gray-900/60 backdrop-blur-sm">
+        <div class="relative w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-800">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Recommend this Book</h3>
+
+            <%= form_with model: [@book, Recommendation.new], local: true do |f| %>
+              <div class="mb-4">
+                <%= f.label :review, class: "block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300" %>
+                <%= f.text_area :review, rows: 4, class: "w-full p-2.5 text-sm border rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" %>
+              </div>
+
+              <div class="flex justify-end gap-3">
+                <button type="button" data-modal-hide="recommend-modal"
+                        class="text-gray-600 border px-4 py-2 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                  Cancel
+                </button>
+                <%= f.submit "Submit", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    <% else %>
+      <p class="mt-6 text-sm italic text-gray-500">You have already recommended this book.</p>
+    <% end %>
+
     </div>
   </div>
 
